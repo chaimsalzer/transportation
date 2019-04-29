@@ -1,32 +1,29 @@
-const https = require("https");
-var xml2js = require("xml2js");
+const constants = require("./constants");
+const axios = require("axios");
+var convert = require("xml-js");
 
-var xml = "<root>Hello xml2js!</root>";
-var obj = { name: "Super", Surname: "Man", age: 23 };
+const { requestBody, url, headers } = constants;
 
-xml2js.parseString(xml, function (err, result) {
-    // console.dir(result);
-});
+const currentDateTime = new Date().toISOString();
 
-var builder = new xml2js.Builder();
+var requestOptions = { compact: true, ignoreComment: true, spaces: 4 };
 
-var xml = builder.buildObject(obj);
+console.log(requestBody);
 
-console.log(xml);
+const data = convert.js2xml(requestBody, requestOptions);
 
-// https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
-//   let data = '';
+const transRequestAsync = async () => {
+  const res = await axios({ method: "post", url, headers, data });
+  const times = convert.xml2js(res.data, {
+    compact: true,
+    trim: true,
+    nativeType: true,
+    ignoreDeclaration: true,
+    ignoreAttributes: true,
+    ignoreCdata: true
+  });
+  console.log(times);
+  return times;
+};
 
-//   // A chunk of data has been recieved.
-//   resp.on('data', (chunk) => {
-//     data += chunk;
-//   });
-
-//   // The whole response has been received. Print out the result.
-//   resp.on('end', () => {
-//     console.log(JSON.parse(data).explanation);
-//   });
-
-// }).on("error", (err) => {
-//   console.log("Error: " + err.message);
-// });
+transRequestAsync();
