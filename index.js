@@ -3,12 +3,18 @@ const axios = require("axios");
 var convert = require("xml-js");
 
 const { requestBody, url, headers } = constants;
+const requestOptions = { compact: true, ignoreComment: true, spaces: 4 };
+const request =
+  requestBody["S:Envelope"]["S:Body"]["siriWS:GetStopMonitoringService"][
+    "Request"
+  ];
 
-const currentDateTime = new Date().toISOString();
+const nowIso = new Date().toISOString();
 
-var requestOptions = { compact: true, ignoreComment: true, spaces: 4 };
-
-console.log(requestBody);
+request["siri:RequestTimestamp"] = nowIso;
+request["siri:StopMonitoringRequest"]["siri:RequestTimestamp"] = nowIso;
+request["siri:StopMonitoringRequest"]["siri:StartTime"] = nowIso;
+console.log(request);
 
 const data = convert.js2xml(requestBody, requestOptions);
 
@@ -23,7 +29,7 @@ const transRequestAsync = async () => {
     ignoreCdata: true
   });
   console.log(times);
-  return times;
 };
 
 transRequestAsync();
+
