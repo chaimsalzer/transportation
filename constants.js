@@ -22,7 +22,7 @@ const requestBody = {
             },
             "siri:RequestTimestamp": "2019-04-28T20:55:59.545Z",
             "siri:MessageIdentifier": "0",
-            "siri:PreviewInterval": "PT30M",
+            "siri:PreviewInterval": "PT1H",
             "siri:StartTime": "2019-04-28T20:55:59.545Z",
             "siri:MonitoringRef": "21258",
             "siri:MaximumStopVisits": "100"

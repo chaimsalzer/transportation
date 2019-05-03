@@ -14,13 +14,16 @@ const nowIso = new Date().toISOString();
 request["siri:RequestTimestamp"] = nowIso;
 request["siri:StopMonitoringRequest"]["siri:RequestTimestamp"] = nowIso;
 request["siri:StopMonitoringRequest"]["siri:StartTime"] = nowIso;
+request["siri:StopMonitoringRequest"]["siri:MonitoringRef"] = 21258;
+request["siri:StopMonitoringRequest"]["siri:PreviewInterval"] = "PT12H";
+
 console.log(request);
 
 const data = convert.js2xml(requestBody, requestOptions);
 
 const transRequestAsync = async () => {
-  const res = await axios({ method: "post", url, headers, data });
-  const times = convert.xml2js(res.data, {
+  const responseXml = await axios({ method: "post", url, headers, data });
+  const responseObject = convert.xml2js(responseXml.data, {
     compact: true,
     trim: true,
     nativeType: true,
@@ -28,8 +31,36 @@ const transRequestAsync = async () => {
     ignoreAttributes: true,
     ignoreCdata: true
   });
-  console.log(times);
+  const MonitoredStopVisits =
+    responseObject["S:Envelope"]["S:Body"][
+      "ns7:GetStopMonitoringServiceResponse"
+    ]["Answer"]["ns3:StopMonitoringDelivery"]["ns3:MonitoredStopVisit"];
+
+  const stationVisits = {};
+
+  MonitoredStopVisits.forEach(visit => {
+    const Journey = visit["ns3:MonitoredVehicleJourney"];
+    const PublishedLineName = Journey["ns3:PublishedLineName"]._text;
+    const ExpectedArrivalTime =
+      Journey["ns3:MonitoredCall"]["ns3:ExpectedArrivalTime"]._text;
+    const VehicleLocation = Journey["ns3:VehicleLocation"];
+
+    if (!stationVisits[PublishedLineName]) {
+      stationVisits[PublishedLineName] = { ExpectedArrivalTimes: [] };
+    }
+    stationVisits[PublishedLineName].ExpectedArrivalTimes.push({
+      ExpectedArrivalTime,
+      VehicleLocation: {
+        Latitude: VehicleLocation
+          ? VehicleLocation["ns3:Latitude"]._text
+          : null,
+        Longitude: VehicleLocation
+          ? VehicleLocation["ns3:Longitude"]._text
+          : null
+      }
+    });
+  });
+  console.log(stationVisits);
 };
 
 transRequestAsync();
-
