@@ -1,28 +1,32 @@
-[debug] [2019-05-05T21:28:57.012Z] ----------------------------------------------------------------------
-[debug] [2019-05-05T21:28:57.015Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Chaim\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-05-05T21:28:57.015Z] CLI Version:   6.8.0
-[debug] [2019-05-05T21:28:57.015Z] Platform:      win32
-[debug] [2019-05-05T21:28:57.015Z] Node Version:  v10.15.2
-[debug] [2019-05-05T21:28:57.016Z] Time:          Mon May 06 2019 00:28:57 GMT+0300 (Israel Daylight Time)
-[debug] [2019-05-05T21:28:57.016Z] ----------------------------------------------------------------------
+[debug] [2019-05-07T15:40:01.799Z] ----------------------------------------------------------------------
+[debug] [2019-05-07T15:40:01.801Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\csalzer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only functions
+[debug] [2019-05-07T15:40:01.802Z] CLI Version:   6.8.0
+[debug] [2019-05-07T15:40:01.802Z] Platform:      win32
+[debug] [2019-05-07T15:40:01.802Z] Node Version:  v8.11.4
+[debug] [2019-05-07T15:40:01.803Z] Time:          Tue May 07 2019 18:40:01 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2019-05-07T15:40:01.803Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-05-05T21:28:57.027Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-05-05T21:28:57.028Z] > authorizing via signed-in user
-[debug] [2019-05-05T21:28:57.029Z] [iam] checking project transportation-israel for permissions ["firebase.projects.get"]
-[debug] [2019-05-05T21:28:57.031Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/transportation-israel:testIamPermissions  
+[debug] [2019-05-07T15:40:01.817Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-07T15:40:01.817Z] > authorizing via signed-in user
+[debug] [2019-05-07T15:40:01.817Z] [iam] checking project transportation-israel for permissions ["firebase.projects.get"]
+[debug] [2019-05-07T15:40:01.819Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-05-07T15:40:01.820Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-05-07T15:40:02.863Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T15:40:02.892Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/transportation-israel:testIamPermissions  
 
-[debug] [2019-05-05T21:28:58.146Z] <<< HTTP RESPONSE 200
-[debug] [2019-05-05T21:28:58.149Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/transportation-israel  
+[debug] [2019-05-07T15:40:04.486Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T15:40:04.491Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/transportation-israel  
  
-[debug] [2019-05-05T21:28:59.388Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T15:40:05.713Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Serving from 'C:\Users\Chaim\transportation'...
+[info] === Serving from 'C:\Users\csalzer\projects\transportation'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2019-05-05T21:29:00.398Z] Fetching environment
-[debug] [2019-05-05T21:29:00.402Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/837570928360:getServerAppConfig  
+[debug] [2019-05-07T15:40:07.610Z] Fetching environment
+[debug] [2019-05-07T15:40:07.613Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/837570928360:getServerAppConfig  
  
-[debug] [2019-05-05T21:29:00.924Z] <<< HTTP RESPONSE 200
-[debug] [2019-05-05T21:29:00.926Z] Starting @google-cloud/functions-emulator
-[debug] [2019-05-05T21:29:02.974Z] Parsing function triggers
+[debug] [2019-05-07T15:40:08.583Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T15:40:08.588Z] Starting @google-cloud/functions-emulator
+[debug] [2019-05-07T15:40:12.219Z] Parsing function triggers
 [info] +  functions: helloWorld: http://localhost:5000/transportation-israel/us-central1/helloWorld
